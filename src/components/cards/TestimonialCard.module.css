@@ -1,0 +1,77 @@
+.card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  border: 1px solid rgba(38,35,43,0.06);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.quoteIcon {
+  color: var(--lavender);
+  margin-bottom: var(--space-md);
+}
+
+.quote {
+  font-size: 0.95rem;
+  color: var(--dark);
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+  font-style: italic;
+  flex: 1;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.initials {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--lavender);
+  color: var(--lavender-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.role {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.compact { padding: var(--space-lg); }
+.compact .quote { font-size: 0.88rem; margin-bottom: var(--space-md); }

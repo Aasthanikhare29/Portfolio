@@ -1,0 +1,145 @@
+.page {
+}
+
+.content {
+  padding: var(--space-5xl) 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--cream);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  transition: var(--transition);
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.quote {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.8;
+  font-style: italic;
+  position: relative;
+  padding-top: var(--space-xl);
+}
+
+.quote::before {
+  content: "\201C";
+  position: absolute;
+  top: -4px;
+  left: 0;
+  font-size: 3.5rem;
+  font-family: Georgia, serif;
+  color: var(--lavender-deep);
+  line-height: 1;
+  opacity: 0.6;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: auto;
+}
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  border: 2px solid var(--white);
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.authorName {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.authorRole {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.placeholderNote {
+  text-align: center;
+  margin-top: var(--space-2xl);
+  font-size: 0.85rem;
+  color: var(--light-muted);
+  font-style: italic;
+}
+
+.cta {
+  padding: 0 0 var(--space-6xl);
+}
+
+.ctaInner {
+  text-align: center;
+  background: var(--mint);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4xl) var(--space-2xl);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  margin-bottom: var(--space-md);
+  letter-spacing: -0.02em;
+}
+
+.ctaText {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: var(--space-xl);
+}
+
+.ctaBtn {
+  display: inline-block;
+  padding: var(--space-md) var(--space-2xl);
+  background: var(--dark);
+  color: var(--white);
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.ctaBtn:hover {
+  background: var(--muted);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+  }
+}

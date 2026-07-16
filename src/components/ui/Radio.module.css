@@ -1,0 +1,60 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(38,35,43,0.2);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--lavender-deep);
+  animation: scaleIn 0.2s ease;
+}
+
+.input:focus-visible + .circle {
+  outline: 3px solid var(--lavender-deep);
+  outline-offset: 2px;
+}
+
+.checked {
+  border-color: var(--lavender-deep);
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--dark);
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}

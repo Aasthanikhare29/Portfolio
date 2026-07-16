@@ -1,0 +1,79 @@
+.avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--lavender);
+}
+
+.small { width: 36px; height: 36px; font-size: 0.7rem; }
+.medium { width: 44px; height: 44px; font-size: 0.8rem; }
+.large { width: 56px; height: 56px; font-size: 1rem; }
+.xl { width: 72px; height: 72px; font-size: 1.2rem; }
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.initials {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--lavender-deep);
+}
+
+.border {
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 2px var(--lavender-deep);
+}
+
+.status {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--white);
+}
+
+.small .status { width: 9px; height: 9px; }
+.large .status { width: 14px; height: 14px; }
+
+.online { background: var(--color-success); }
+.offline { background: var(--light-muted); }
+.busy { background: var(--color-error); }
+.away { background: var(--color-warning); }
+
+.group {
+  display: flex;
+  align-items: center;
+}
+
+.groupItem {
+  margin-left: -10px;
+}
+
+.groupItem:first-child { margin-left: 0; }
+
+.overflow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 2px solid var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overflowText {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+}

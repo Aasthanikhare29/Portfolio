@@ -1,0 +1,17 @@
+.section {
+  padding: var(--space-6xl) 0;
+  position: relative;
+}
+
+.paddingNone { padding: 0; }
+.paddingSmall { padding: var(--space-3xl) 0; }
+.paddingLarge { padding: var(--space-6xl) 0; }
+
+.bgCream { background: var(--cream); }
+.bgLavender { background: var(--lavender); }
+.bgPink { background: var(--pink); }
+
+@media (max-width: 768px) {
+  .section { padding: var(--space-4xl) 0; }
+  .paddingLarge { padding: var(--space-4xl) 0; }
+}

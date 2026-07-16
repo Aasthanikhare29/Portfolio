@@ -1,0 +1,28 @@
+.divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(38,35,43,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--space-xl) 0;
+}
+
+.content {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 var(--space-md);
+  background: var(--white);
+}
+
+.emoji { font-size: 0.9rem; }
+
+.text {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--light-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}

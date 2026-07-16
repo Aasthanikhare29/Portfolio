@@ -1,0 +1,36 @@
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-3xl) var(--space-xl);
+}
+
+.icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--lavender);
+  color: var(--lavender-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-lg);
+  font-size: 1.5rem;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: var(--space-sm);
+}
+
+.description {
+  font-size: 0.9rem;
+  color: var(--muted);
+  max-width: 360px;
+  line-height: 1.6;
+  margin-bottom: var(--space-xl);
+}

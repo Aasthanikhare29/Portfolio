@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  padding: 4px 14px;
+  border-radius: var(--radius-xl);
+  font-size: 0.78rem;
+  font-weight: 500;
+  background: var(--cream);
+  color: var(--muted);
+  border: 1px solid rgba(38, 35, 43, 0.06);
+  transition: var(--transition-fast);
+}
+
+.tag:hover {
+  background: var(--lavender);
+  color: var(--dark);
+}

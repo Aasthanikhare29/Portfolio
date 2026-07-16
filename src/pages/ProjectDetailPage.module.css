@@ -1,0 +1,251 @@
+.page {
+  padding-bottom: var(--space-5xl);
+}
+
+.heroCategory {
+  font-family: var(--font-handwritten);
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: var(--space-lg);
+}
+
+.heroTags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: var(--space-lg);
+}
+
+.tag {
+  padding: 6px 16px;
+  border-radius: var(--radius-xl);
+  font-size: 0.82rem;
+  font-weight: 500;
+  border: 1px solid rgba(38, 35, 43, 0.1);
+  background: var(--white);
+  color: var(--dark);
+}
+
+.heroActions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 12px 24px;
+  border-radius: var(--radius-xl);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: var(--transition);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.primaryAction {
+  background: var(--dark);
+  color: var(--white);
+  border: none;
+}
+
+.primaryAction:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.secondaryAction {
+  background: var(--white);
+  color: var(--dark);
+  border: 2px solid rgba(38, 35, 43, 0.12);
+}
+
+.secondaryAction:hover {
+  border-color: var(--dark);
+  transform: translateY(-2px);
+}
+
+.imageSection {
+  padding: 0 0 var(--space-4xl);
+}
+
+.imageContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.heroImage {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+}
+
+.content {
+  padding: 0 0 var(--space-4xl);
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-3xl);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.sectionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.sectionLabel {
+  font-family: var(--font-handwritten);
+  font-size: 1.2rem;
+  color: var(--lavender-deep);
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.sectionText {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.responsibilitiesList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.responsibility {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.bullet {
+  color: var(--lavender-deep);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  position: sticky;
+  top: calc(var(--nav-height) + var(--space-xl));
+}
+
+.sidebarCard {
+  padding: var(--space-xl);
+  background: var(--cream);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.sidebarTitle {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--dark);
+}
+
+.sidebarItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebarLabel {
+  font-size: 0.78rem;
+  color: var(--light-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.sidebarValue {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--dark);
+}
+
+.highlightsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.highlight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--dark);
+  padding: 8px 12px;
+  background: var(--yellow);
+  border-radius: var(--radius-sm);
+  line-height: 1.5;
+}
+.highlight svg {
+  flex-shrink: 0;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--dark);
+  text-decoration: none;
+  margin-bottom: var(--space-xl);
+  transition: var(--transition);
+}
+
+.backLink:hover {
+  color: var(--lavender-deep);
+}
+
+@media (max-width: 768px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+}

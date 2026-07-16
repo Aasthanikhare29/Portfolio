@@ -1,0 +1,215 @@
+.hero {
+  position: relative;
+  padding: calc(var(--nav-height) + var(--space-4xl)) 0 var(--space-4xl);
+  background: linear-gradient(160deg, var(--cream) 0%, var(--mint) 40%, var(--blue) 100%);
+  text-align: center;
+  overflow: hidden;
+}
+
+.bgDecor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.doodle {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.15;
+  animation: float 6s ease-in-out infinite;
+}
+
+.doodle1 {
+  top: 15%;
+  left: 8%;
+  animation-delay: 0s;
+}
+
+.doodle2 {
+  top: 25%;
+  right: 12%;
+  animation-delay: 1.5s;
+}
+
+.doodle3 {
+  bottom: 20%;
+  left: 15%;
+  animation-delay: 3s;
+}
+
+.doodle4 {
+  top: 60%;
+  right: 8%;
+  animation-delay: 0.8s;
+}
+
+.doodle5 {
+  bottom: 10%;
+  right: 25%;
+  animation-delay: 2.5s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(8deg); }
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.iconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  color: #e07a5f;
+  margin-bottom: var(--space-xl);
+  border: 1px solid rgba(224, 122, 95, 0.2);
+}
+
+.label {
+  font-family: var(--font-handwritten);
+  font-size: 1.3rem;
+  color: #e07a5f;
+  margin-bottom: var(--space-sm);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: var(--space-xl);
+  color: var(--dark);
+}
+
+.line {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #e07a5f, var(--lavender-deep));
+  border-radius: 2px;
+  margin-bottom: var(--space-xl);
+}
+
+.subtitle {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--muted);
+  max-width: 520px;
+  line-height: 1.8;
+  margin-bottom: var(--space-2xl);
+}
+
+.statsRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+  padding: var(--space-lg) var(--space-2xl);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.statNumber {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.statDivider {
+  width: 1px;
+  height: 32px;
+  background: rgba(38, 35, 43, 0.1);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.browseBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 12px 28px;
+  border-radius: var(--radius-xl);
+  background: var(--dark);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+}
+
+.browseBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.latestBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 12px 28px;
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  color: var(--dark);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid rgba(38, 35, 43, 0.08);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.latestBtn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: calc(var(--nav-height) + var(--space-3xl)) 0 var(--space-3xl);
+  }
+
+  .statsRow {
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .statNumber {
+    font-size: 1.2rem;
+  }
+}
