@@ -10,7 +10,6 @@ const navLinks = [
   { path: "/blog", label: "Blog" },
   { path: "/journey", label: "Journey" },
   { path: "/contact", label: "Contact" },
-  { path: "/components", label: "UI Kit" },
 ];
 
 export default function Footer() {
@@ -22,7 +21,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className="container">
         <div className={styles.inner}>
-          <div className={styles.top}>
+          <div className={styles.main}>
             <div className={styles.brand}>
               <Link to="/" className={styles.logo}>
                 ✨ Aastha Nikhare
@@ -31,25 +30,6 @@ export default function Footer() {
                 Designed with curiosity, coded with care and decorated with a
                 little bit of joy. 🌸
               </p>
-            </div>
-
-            <div className={styles.navSection}>
-              <h4 className={styles.navTitle}>Navigation</h4>
-              <div className={styles.navGrid}>
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    className={styles.navLink}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div className={styles.socialSection}>
-              <h4 className={styles.navTitle}>Connect</h4>
               <div className={styles.socialLinks}>
                 <a
                   href="https://github.com/"
@@ -78,6 +58,33 @@ export default function Footer() {
                 </a>
               </div>
             </div>
+
+            <div className={styles.linksGroup}>
+              <div className={styles.linksCol}>
+                <h4 className={styles.colTitle}>Navigate</h4>
+                {navLinks.slice(0, 4).map((link) => (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={styles.navLink}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+              <div className={styles.linksCol}>
+                <h4 className={styles.colTitle}>More</h4>
+                {navLinks.slice(4).map((link) => (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={styles.navLink}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className={styles.bottom}>
@@ -89,7 +96,7 @@ export default function Footer() {
               onClick={scrollToTop}
               aria-label="Back to top"
             >
-              <FiArrowUp size={16} /> Back to top
+              Back to top <FiArrowUp size={14} />
             </button>
           </div>
         </div>

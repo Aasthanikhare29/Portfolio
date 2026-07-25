@@ -28,7 +28,6 @@ export const softSkills = [
   "Creativity",
   "Problem Solving",
   "Adaptability",
-  "Attention to Detail",
 ];
 
 export const expertise = [

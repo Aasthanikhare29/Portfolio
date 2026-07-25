@@ -1,5 +1,9 @@
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+
 .navbar {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
@@ -7,41 +11,32 @@
   z-index: 1000;
   display: flex;
   align-items: center;
-  transition: var(--transition);
-  background: transparent;
+  transition: background 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
 }
 
-.scrolled {
-  background: rgba(255, 252, 248, 0.92);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--shadow-sm);
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.09);
 }
 
-.darkMode .logo {
-  color: var(--white);
+.darkMode {
+  background: rgba(26, 22, 37, 0.85);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-.darkMode .navLink {
-  color: rgba(255, 255, 255, 0.6);
+.darkMode.scrolled {
+  background: rgba(26, 22, 37, 0.95);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
 }
 
-.darkMode .navLink:hover,
-.darkMode .navLinkActive {
-  color: var(--white);
-}
-
-.darkMode .hamburger {
-  color: var(--white);
-}
-
-.darkMode .resumeBtn {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.darkMode .resumeBtn:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
+/* ============================================================
+   INNER LAYOUT
+   ============================================================ */
 
 .navInner {
   display: flex;
@@ -53,80 +48,319 @@
   padding: 0 var(--space-xl);
 }
 
+/* ============================================================
+   LOGO
+   ============================================================ */
+
 .logo {
   font-family: var(--font-handwritten);
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--dark);
   cursor: pointer;
-  transition: var(--transition);
+  transition: color 0.25s ease, transform 0.25s ease;
   z-index: 1001;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 .logo:hover {
   color: var(--lavender-deep);
+  transform: scale(1.04);
 }
+
+.darkMode .logo {
+  color: var(--white);
+}
+
+.darkMode .logo:hover {
+  color: var(--pink-deep);
+}
+
+/* ============================================================
+   DESKTOP NAV LINKS STRIP
+   ============================================================ */
 
 .navLinks {
   display: flex;
   align-items: center;
-  gap: var(--space-lg);
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 999px;
+  padding: 5px 6px;
 }
+
+.darkMode .navLinks {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================
+   INDIVIDUAL NAV LINK
+   ============================================================ */
 
 .navLink {
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   font-weight: 500;
-  color: var(--muted);
-  transition: var(--transition);
+  color: var(--dark);
+  transition: color 0.25s ease, background 0.25s ease, transform 0.2s ease;
   position: relative;
-  padding: var(--space-xs) 0;
+  padding: 7px 14px;
   cursor: pointer;
   text-decoration: none;
+  border-radius: 999px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .navLink:hover {
   color: var(--dark);
+  background: rgba(38, 35, 43, 0.07);
+  transform: translateY(-1px);
 }
 
 .navLinkActive {
   color: var(--dark);
   font-weight: 600;
+  background: var(--lavender);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
-.navLinkActive::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--lavender-deep);
-  border-radius: 2px;
+/* dark mode links */
+.darkMode .navLink {
+  color: rgba(255, 255, 255, 0.9);
 }
+
+.darkMode .navLink:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.darkMode .navLinkActive {
+  color: var(--dark);
+  background: var(--white);
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* active indicator dot (framer motion layoutId) */
+.activeDot {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--lavender-deep);
+  pointer-events: none;
+}
+
+.darkMode .activeDot {
+  background: var(--lavender-deep);
+}
+
+.darkMode .navLinkActive .activeDot {
+  background: var(--lavender-deep);
+}
+
+/* ============================================================
+   MORE DROPDOWN TRIGGER
+   ============================================================ */
+
+.dropdownWrapper {
+  position: relative;
+}
+
+.moreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+}
+
+.moreBtnOpen {
+  background: rgba(38, 35, 43, 0.07);
+}
+
+.darkMode .moreBtnOpen {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.chevron {
+  opacity: 0.6;
+  transition: transform 0.22s ease, opacity 0.22s ease;
+  flex-shrink: 0;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* ============================================================
+   DROPDOWN PANEL
+   ============================================================ */
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 210px;
+  z-index: 1100;
+  transform-origin: top right;
+}
+
+.dropdownInner {
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+  padding: 8px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.darkMode .dropdownInner {
+  background: #231e30;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dropdownLabel {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--light-muted);
+  padding: 4px 10px 6px;
+}
+
+.darkMode .dropdownLabel {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--dark);
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background: rgba(38, 35, 43, 0.05);
+  transform: translateX(2px);
+}
+
+.dropdownItemActive {
+  background: var(--lavender);
+  font-weight: 600;
+}
+
+.darkMode .dropdownItem {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.darkMode .dropdownItem:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.darkMode .dropdownItemActive {
+  background: rgba(191, 166, 232, 0.18);
+}
+
+.dropdownIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--icon-color) 18%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--icon-color);
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+
+.dropdownItem:hover .dropdownIcon {
+  background: color-mix(in srgb, var(--icon-color) 28%, transparent);
+}
+
+.dropdownItemLabel {
+  flex: 1;
+}
+
+.dropdownArrow {
+  opacity: 0;
+  color: var(--light-muted);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dropdownItem:hover .dropdownArrow {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+/* ============================================================
+   RESUME BUTTON
+   ============================================================ */
 
 .resumeBtn {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: 10px 20px;
+  gap: 6px;
+  padding: 7px 16px;
   background: var(--dark);
   color: var(--white);
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 500;
-  border-radius: var(--radius-xl);
-  transition: var(--transition);
+  border-radius: 999px;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
   cursor: pointer;
-  border: none;
+  border: 1px solid transparent;
   text-decoration: none;
+  margin-left: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .resumeBtn:hover {
-  background: var(--muted);
+  background: #302944;
   transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(26, 22, 37, 0.25);
 }
+
+.darkMode .resumeBtn {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+}
+
+.darkMode .resumeBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================================
+   HAMBURGER
+   ============================================================ */
 
 .hamburger {
   display: none;
@@ -136,8 +370,25 @@
   border: none;
   cursor: pointer;
   color: var(--dark);
-  font-size: 1.5rem;
+  border-radius: 10px;
+  transition: background 0.2s ease;
 }
+
+.hamburger:hover {
+  background: rgba(38, 35, 43, 0.06);
+}
+
+.darkMode .hamburger {
+  color: var(--white);
+}
+
+.darkMode .hamburger:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================================
+   MOBILE MENU OVERLAY
+   ============================================================ */
 
 .mobileMenu {
   position: fixed;
@@ -145,59 +396,128 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--white);
+  background: rgba(26, 22, 37, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 999;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-xl);
+}
+
+.mobileMenuInner {
+  background: var(--white);
+  border-radius: 28px;
+  padding: 28px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.22);
+  max-width: 320px;
+  width: 90%;
 }
 
 .mobileNavLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-body);
-  font-size: 1.5rem;
+  font-size: 1.05rem;
   font-weight: 500;
   color: var(--dark);
   cursor: pointer;
   text-decoration: none;
-  transition: var(--transition);
+  transition: background 0.2s ease, transform 0.15s ease;
+  padding: 10px 14px;
+  border-radius: 14px;
+  width: 100%;
 }
 
 .mobileNavLink:hover {
-  color: var(--lavender-deep);
+  background: rgba(38, 35, 43, 0.05);
+  transform: translateX(3px);
 }
 
 .mobileNavLinkActive {
-  color: var(--lavender-deep);
+  background: var(--lavender);
+  font-weight: 600;
+}
+
+.mobileNavLabel {
+  flex: 1;
+}
+
+/* "More" links in mobile — slightly visually distinct */
+.mobileNavLinkMore {
+  font-size: 0.975rem;
+  color: var(--muted);
+}
+
+.mobileNavLinkMore.mobileNavLinkActive {
+  color: var(--dark);
+}
+
+.mobileMoreIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--icon-color) 16%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--icon-color);
+  flex-shrink: 0;
+}
+
+/* Divider between primary and "more" links */
+.mobileDivider {
+  height: 1px;
+  background: rgba(38, 35, 43, 0.07);
+  margin: 6px 2px;
 }
 
 .mobileResumeBtn {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: 14px 28px;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
   background: var(--dark);
   color: var(--white);
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.92rem;
   font-weight: 500;
-  border-radius: var(--radius-xl);
-  transition: var(--transition);
+  border-radius: 999px;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
   cursor: pointer;
   border: none;
   text-decoration: none;
-  margin-top: var(--space-lg);
+  margin-top: 10px;
 }
 
 .mobileResumeBtn:hover {
-  background: var(--muted);
+  background: #302944;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(26, 22, 37, 0.22);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .navLink {
+    font-size: 0.82rem;
+    padding: 7px 11px;
+  }
 }
 
 @media (max-width: 900px) {
   .navLinks {
     display: none;
   }
+
   .hamburger {
     display: flex;
   }
@@ -206,5 +526,9 @@
 @media (max-width: 480px) {
   .logo {
     font-size: 1.5rem;
+  }
+
+  .navInner {
+    padding: 0 var(--space-lg);
   }
 }

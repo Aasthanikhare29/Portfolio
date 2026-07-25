@@ -17,37 +17,37 @@ const values = [
     icon: <Palette size={22} strokeWidth={1.5} />,
     title: "Design with Purpose",
     desc: "Every color, spacing and layout choice serves the user experience.",
-    bg: "var(--pink)",
+    color: "pink",
   },
   {
     icon: <Zap size={22} strokeWidth={1.5} />,
     title: "Build with Care",
     desc: "Clean, maintainable code that performs well and scales gracefully.",
-    bg: "var(--blue)",
+    color: "blue",
   },
   {
     icon: <Users size={22} strokeWidth={1.5} />,
     title: "Collaborate with Heart",
     desc: "Great products come from genuine communication and shared vision.",
-    bg: "var(--mint)",
+    color: "mint",
   },
   {
     icon: <Search size={22} strokeWidth={1.5} />,
     title: "Observe with Curiosity",
     desc: "I study real user behavior to make interfaces that truly work.",
-    bg: "var(--lavender)",
+    color: "lavender",
   },
   {
     icon: <Sprout size={22} strokeWidth={1.5} />,
     title: "Grow with Intention",
     desc: "I invest in learning new skills and improving with every project.",
-    bg: "var(--yellow)",
+    color: "peach",
   },
   {
     icon: <Sparkles size={22} strokeWidth={1.5} />,
     title: "Delight in Details",
     desc: "The small touches, micro-interactions and polish make experiences memorable.",
-    bg: "var(--peach)",
+    color: "yellow",
   },
 ];
 
@@ -75,9 +75,9 @@ export default function AboutPage() {
                 <span className={styles.handwrittenNote}>that's me! <Sparkles size={14} strokeWidth={1.5} /></span>
               </div>
               <div className={styles.badges}>
-                <span className={styles.badge}><MapPin size={14} strokeWidth={1.5} /> Nagpur</span>
-                <span className={styles.badge}><Palette size={14} strokeWidth={1.5} /> UI Developer</span>
-                <span className={styles.badge}><Code size={14} strokeWidth={1.5} /> Frontend Dev</span>
+                <span className={`${styles.badge} ${styles.badgePink}`}><MapPin size={14} strokeWidth={1.5} /> Nagpur</span>
+                <span className={`${styles.badge} ${styles.badgeLavender}`}><Palette size={14} strokeWidth={1.5} /> UI Developer</span>
+                <span className={`${styles.badge} ${styles.badgeMint}`}><Code size={14} strokeWidth={1.5} /> Frontend Dev</span>
               </div>
             </AnimatedSection>
 
@@ -132,12 +132,13 @@ export default function AboutPage() {
                     {values.map((v) => (
                       <div
                         key={v.title}
-                        className={styles.valueCard}
-                        style={{ background: v.bg }}
+                        className={`${styles.valueCard} ${styles[v.color]}`}
                       >
                         <div className={styles.valueIcon}>{v.icon}</div>
-                        <h4 className={styles.valueTitle}>{v.title}</h4>
-                        <p className={styles.valueDesc}>{v.desc}</p>
+                        <div className={styles.valueContent}>
+                          <h4 className={styles.valueTitle}>{v.title}</h4>
+                          <p className={styles.valueDesc}>{v.desc}</p>
+                        </div>
                       </div>
                     ))}
                   </div>

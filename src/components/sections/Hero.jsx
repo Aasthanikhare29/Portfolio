@@ -35,11 +35,6 @@ export default function Hero() {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
-  const scrollToContact = () => {
-    const el = document.getElementById("contact");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section className={styles.hero} id="home">
       <div className={styles.bgGradient} />
@@ -52,6 +47,7 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
         >
+          {/* ── Left: text content ── */}
           <div className={styles.content}>
             <motion.span className={styles.label} variants={itemVariants}>
               Hello, I'm Aastha
@@ -111,34 +107,28 @@ export default function Hero() {
               </a>
               <div className={styles.divider} />
             </motion.div>
-
-            <motion.div
-              className={styles.availabilityBadge}
-              variants={itemVariants}
-            >
-              <span className={styles.pulse} />
-              Open to UI and Frontend opportunities
-            </motion.div>
           </div>
 
-          <motion.div
-            className={styles.illustration}
-            variants={itemVariants}
-          >
+          {/* ── Right: image column ── */}
+          <motion.div className={styles.illustration} variants={itemVariants}>
             <div className={styles.illustrationCard}>
-              <img
-                src="https://picsum.photos/seed/aastha-hero/460/460"
-                alt="Creative workspace"
-                className={styles.illustrationImage}
-                loading="eager"
-              />
+
+              {/* Dedicated clip wrapper — only this clips the image */}
+              <div className={styles.imageWrap}>
+                <img
+                  src="https://picsum.photos/seed/aastha-hero/460/580"
+                  alt="Aastha Nikhare"
+                  className={styles.illustrationImage}
+                  loading="eager"
+                />
+              </div>
+
+              {/* Floating tech chips — only shown on wide screens */}
               {floatingItems.map((item) => (
                 <motion.div
                   key={item.className}
                   className={`${styles.floatingElement} ${styles[item.className]}`}
-                  animate={{
-                    y: [0, -10, 0],
-                  }}
+                  animate={{ y: [0, -10, 0] }}
                   transition={{
                     duration: 4,
                     repeat: Infinity,

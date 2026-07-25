@@ -8,21 +8,20 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-xl);
 }
 
 .card {
   background: var(--white);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+  border-radius: var(--radius-xl);
   border: 2px solid rgba(38, 35, 43, 0.06);
   transition: var(--transition);
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 500px;
 }
 
 .card:hover {
@@ -36,6 +35,7 @@
   aspect-ratio: 16/10;
   overflow: hidden;
   position: relative;
+  flex-shrink: 0;
 }
 
 .projectImage {
@@ -70,6 +70,7 @@
   flex-direction: column;
   gap: var(--space-md);
   flex: 1;
+  overflow: hidden;
 }
 
 .cardTitle {
@@ -84,13 +85,17 @@
   font-size: 0.9rem;
   color: var(--muted);
   line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: auto;
+  min-height: 28px;
 }
 
 .tag {
@@ -103,23 +108,45 @@
   border: 1px solid rgba(38, 35, 43, 0.06);
 }
 
-.viewBtn {
+.cardActions {
+  display: flex;
+  gap: var(--space-sm);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(38, 35, 43, 0.05);
+  margin-top: auto;
+}
+
+.actionBtn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
+  padding: 5px 12px;
+  border-radius: var(--radius-xl);
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.72rem;
   font-weight: 500;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
   color: var(--dark);
-  padding: 8px 0;
+  text-decoration: none;
 }
 
-.viewBtnArrow {
-  transition: transform 0.3s ease;
+.actionBtn a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: inherit;
+  text-decoration: none;
 }
 
-.card:hover .viewBtnArrow {
-  transform: translateX(4px);
+.actionBtnLive { background: var(--pink); }
+.actionBtnCode { background: var(--blue); }
+.actionBtnCase { background: var(--lavender); }
+
+.actionBtn:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {

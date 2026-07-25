@@ -1,11 +1,13 @@
+import { useRef } from "react";
 import { Briefcase, MapPin, Star, Brain, BookOpen, Sprout, Check, Search, Compass, Palette, Code, CheckCircle, Rocket } from "lucide-react";
+import { motion, useInView } from "framer-motion";
 import AnimatedSection from "../components/common/AnimatedSection";
 import PageHero from "../components/common/PageHero";
 import experiences from "../data/experiences";
 import processSteps from "../data/process";
 import styles from "./JourneyPage.module.css";
 
-const dotColors = [styles.dotPink, styles.dotLavender, styles.dotMint, styles.dotPeach];
+const accentColors = [styles.cardPink, styles.cardLavender, styles.cardMint];
 
 const processIconMap = {
   Search: Search,
@@ -16,6 +18,15 @@ const processIconMap = {
   Rocket: Rocket,
 };
 
+const stepColors = [
+  { bg: "var(--pink-deep)", color: "var(--white)" },
+  { bg: "var(--blue-deep)", color: "var(--white)" },
+  { bg: "var(--lavender-deep)", color: "var(--white)" },
+  { bg: "var(--mint-deep)", color: "var(--white)" },
+  { bg: "#c5940a", color: "var(--white)" },
+  { bg: "var(--peach-deep)", color: "var(--white)" },
+];
+
 const learningTopics = [
   { text: "Advanced React Patterns", done: true },
   { text: "Modern Frontend Architecture", done: true },
@@ -24,6 +35,53 @@ const learningTopics = [
   { text: "Design Systems", done: false },
   { text: "Backend Integration", done: false },
 ];
+
+function ExperienceCard({ exp, index }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.3 });
+
+  return (
+    <div
+      ref={ref}
+      className={styles.cardWrapper}
+      style={{ top: `calc(80px + ${index * 24}px)` }}
+    >
+      <motion.div
+        className={`${styles.card} ${accentColors[index % accentColors.length]}`}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={
+          isInView
+            ? { opacity: 1, scale: 1 }
+            : { opacity: 0, scale: 0.95 }
+        }
+        transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
+        <div className={styles.cardNumber}>
+          {String(index + 1).padStart(2, "0")}
+        </div>
+        <div className={styles.cardContent}>
+          <span className={styles.date}>{exp.date}</span>
+          <h3 className={styles.role}>{exp.role}</h3>
+          <p className={styles.company}>{exp.company}</p>
+          <p className={styles.location}><MapPin size={14} strokeWidth={1.5} /> {exp.location}</p>
+          <p className={styles.description}>{exp.description}</p>
+          <div className={styles.techTags}>
+            {exp.technologies.map((tech) => (
+              <span key={tech} className={styles.techTag}>
+                {tech}
+              </span>
+            ))}
+          </div>
+          {exp.highlight && (
+            <div className={styles.highlight}>
+              <Star size={14} strokeWidth={2} /> {exp.highlight}
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </div>
+  );
+}
 
 export default function JourneyPage() {
   return (
@@ -37,39 +95,13 @@ export default function JourneyPage() {
 
       <div className={styles.timeline}>
         <div className="container">
-          <div className={styles.timelineInner}>
-            <div className={styles.timelineLine} />
+          <div className={styles.stickyContainer}>
             {experiences.map((exp, index) => (
-              <AnimatedSection key={exp.id} delay={index * 0.12}>
-                <div className={styles.item}>
-                  <div
-                    className={`${styles.dot} ${
-                      dotColors[index % dotColors.length]
-                    }`}
-                  />
-                  <div className={styles.card}>
-                    <div className={styles.cardTop}>
-                      <div>
-                        <h3 className={styles.role}>{exp.role}</h3>
-                        <p className={styles.company}>{exp.company}</p>
-                      </div>
-                      <span className={styles.date}>{exp.date}</span>
-                    </div>
-                    <p className={styles.location}><MapPin size={14} strokeWidth={1.5} /> {exp.location}</p>
-                    <p className={styles.description}>{exp.description}</p>
-                    <div className={styles.techTags}>
-                      {exp.technologies.map((tech) => (
-                        <span key={tech} className={styles.techTag}>
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                    {exp.highlight && (
-                      <div className={styles.highlight}><Star size={14} strokeWidth={1.5} /> {exp.highlight}</div>
-                    )}
-                  </div>
-                </div>
-              </AnimatedSection>
+              <ExperienceCard
+                key={exp.id}
+                exp={exp}
+                index={index}
+              />
             ))}
           </div>
         </div>
@@ -82,16 +114,23 @@ export default function JourneyPage() {
               <Brain size={28} strokeWidth={1.5} /> How I Turn Ideas Into Interfaces
             </h2>
           </AnimatedSection>
-          <div className={styles.processGrid}>
+          <div className={styles.stepper}>
             {processSteps.map((step, index) => {
               const ProcessIcon = processIconMap[step.icon] || CheckCircle;
+              const color = stepColors[index % stepColors.length];
               return (
-                <AnimatedSection key={step.id} delay={index * 0.1}>
-                  <div className={styles.processStep}>
-                    <span className={styles.processNumber}>{step.number}</span>
-                    <div className={styles.processIcon}><ProcessIcon size={24} strokeWidth={1.5} /></div>
-                    <h3 className={styles.processStepTitle}>{step.title}</h3>
-                    <p className={styles.processDesc}>{step.description}</p>
+                <AnimatedSection key={step.id} delay={index * 0.08}>
+                  <div className={styles.step}>
+                    <div
+                      className={styles.stepDot}
+                      style={{ background: color.bg }}
+                    >
+                      <ProcessIcon size={20} strokeWidth={2} style={{ color: color.color }} />
+                    </div>
+                    <div className={styles.stepContent}>
+                      <h3 className={styles.stepTitle}>{step.title}</h3>
+                      <p className={styles.stepDesc}>{step.description}</p>
+                    </div>
                   </div>
                 </AnimatedSection>
               );

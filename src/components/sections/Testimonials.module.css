@@ -1,6 +1,6 @@
 .testimonials {
-  background: var(--white);
-  padding: var(--space-6xl) 0;
+  background: transparent;
+  padding: var(--space-3xl) 0;
 }
 
 .header {
@@ -24,20 +24,32 @@
   margin: 0 auto;
 }
 
+.grid > div {
+  display: flex;
+  height: 100%;
+}
+
 .card {
-  background: var(--cream);
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: var(--radius-xl);
   padding: var(--space-2xl);
-  border: 1px solid rgba(38, 35, 43, 0.04);
+  border: var(--glass-border);
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
   transition: var(--transition);
+  height: 100%;
+  box-sizing: border-box;
+  box-shadow: var(--glass-shadow);
 }
 
 .card:hover {
+  background: var(--glass-bg-hover);
+  border: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-hover);
   transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
 }
 
 .quote {

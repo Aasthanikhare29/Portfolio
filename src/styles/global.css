@@ -65,6 +65,23 @@
   --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Glassmorphism tokens ── */
+  /* Light surface (on white/cream backgrounds) */
+  --glass-bg:            rgba(255, 255, 255, 0.60);
+  --glass-bg-hover:      rgba(255, 255, 255, 0.80);
+  --glass-border:        1px solid rgba(255, 255, 255, 0.70);
+  --glass-border-hover:  1px solid rgba(255, 255, 255, 0.90);
+  --glass-blur:          backdrop-filter: blur(16px);
+  --glass-shadow:        0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+  --glass-shadow-hover:  0 16px 48px rgba(0, 0, 0, 0.10), 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  /* Dark surface (on dark/colored backgrounds) */
+  --glass-dark-bg:           rgba(26, 22, 37, 0.55);
+  --glass-dark-bg-hover:     rgba(26, 22, 37, 0.70);
+  --glass-dark-border:       1px solid rgba(255, 255, 255, 0.10);
+  --glass-dark-border-hover: 1px solid rgba(255, 255, 255, 0.20);
+  --glass-dark-shadow:       0 4px 24px rgba(0, 0, 0, 0.20), 0 1px 4px rgba(0, 0, 0, 0.12);
 }
 
 *,
@@ -98,7 +115,14 @@ body {
   font-family: var(--font-body);
   font-weight: 400;
   color: var(--dark);
+  /* Soft mesh gradient backdrop — glass surfaces blur against this */
   background-color: var(--white);
+  background-image:
+    radial-gradient(ellipse 70% 50% at 15%  20%, rgba(237, 228, 255, 0.55) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 45% at 85%  10%, rgba(255, 228, 239, 0.45) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 40% at 50%  90%, rgba(224, 247, 235, 0.40) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 35% at 80%  70%, rgba(227, 238, 255, 0.35) 0%, transparent 50%);
+  background-attachment: fixed;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

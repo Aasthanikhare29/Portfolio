@@ -12,6 +12,15 @@ const iconMap = {
   Rocket,
 };
 
+const stepColors = [
+  { bg: "var(--pink-deep)", color: "var(--white)" },
+  { bg: "var(--blue-deep)", color: "var(--white)" },
+  { bg: "var(--lavender-deep)", color: "var(--white)" },
+  { bg: "var(--mint-deep)", color: "var(--white)" },
+  { bg: "#c5940a", color: "var(--white)" },
+  { bg: "var(--peach-deep)", color: "var(--white)" },
+];
+
 export default function Process() {
   return (
     <section className={styles.process} id="process">
@@ -24,18 +33,23 @@ export default function Process() {
           </p>
         </AnimatedSection>
 
-        <div className={styles.timeline}>
+        <div className={styles.stepper}>
           {processSteps.map((step, index) => {
             const IconComponent = iconMap[step.icon] || Search;
+            const stepColor = stepColors[index % stepColors.length];
             return (
-              <AnimatedSection key={step.id} delay={index * 0.1}>
+              <AnimatedSection key={step.id} delay={index * 0.08}>
                 <div className={styles.step}>
-                  <span className={styles.stepNumber}>{step.number}</span>
-                  <div className={styles.stepIcon}>
-                    <IconComponent size={22} strokeWidth={1.5} />
+                  <div
+                    className={styles.dot}
+                    style={{ background: stepColor.bg }}
+                  >
+                    <IconComponent size={20} strokeWidth={2} style={{ color: stepColor.color }} />
                   </div>
-                  <h3 className={styles.stepTitle}>{step.title}</h3>
-                  <p className={styles.stepDesc}>{step.description}</p>
+                  <div className={styles.stepContent}>
+                    <h3 className={styles.stepTitle}>{step.title}</h3>
+                    <p className={styles.stepDesc}>{step.description}</p>
+                  </div>
                 </div>
               </AnimatedSection>
             );

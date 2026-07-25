@@ -77,9 +77,12 @@
   font-family: var(--font-body);
   font-size: 0.8rem;
   font-weight: 500;
-  background: var(--white);
-  border: 1px solid rgba(38, 35, 43, 0.08);
+  color: var(--dark);
 }
+
+.badgePink { background: var(--pink); }
+.badgeLavender { background: var(--lavender); }
+.badgeMint { background: var(--mint); }
 
 .right {
   display: flex;
@@ -156,32 +159,128 @@
 
 .valuesGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-md);
 }
 
 .valueCard {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
   padding: var(--space-lg);
-  border-radius: var(--radius-md);
-  text-align: center;
+  border-radius: var(--radius-lg);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.valueCard::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  border-radius: 0 3px 3px 0;
+  opacity: 0;
   transition: var(--transition);
 }
 
 .valueCard:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
 }
 
+.valueCard:hover::after {
+  opacity: 1;
+}
+
+/* color accents */
+.pink {
+  background: rgba(232, 69, 124, 0.06);
+  border: 1px solid rgba(232, 69, 124, 0.1);
+}
+.pink .valueIcon {
+  background: rgba(232, 69, 124, 0.12);
+  color: #e8457c;
+}
+.pink::after { background: #e8457c; }
+.pink:hover { box-shadow: 0 8px 24px rgba(232, 69, 124, 0.12); }
+
+.blue {
+  background: rgba(59, 130, 246, 0.06);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+}
+.blue .valueIcon {
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+}
+.blue::after { background: #3b82f6; }
+.blue:hover { box-shadow: 0 8px 24px rgba(59, 130, 246, 0.12); }
+
+.mint {
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.1);
+}
+.mint .valueIcon {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+}
+.mint::after { background: #10b981; }
+.mint:hover { box-shadow: 0 8px 24px rgba(16, 185, 129, 0.12); }
+
+.lavender {
+  background: rgba(139, 92, 246, 0.06);
+  border: 1px solid rgba(139, 92, 246, 0.1);
+}
+.lavender .valueIcon {
+  background: rgba(139, 92, 246, 0.12);
+  color: #8b5cf6;
+}
+.lavender::after { background: #8b5cf6; }
+.lavender:hover { box-shadow: 0 8px 24px rgba(139, 92, 246, 0.12); }
+
+.peach {
+  background: rgba(240, 130, 90, 0.06);
+  border: 1px solid rgba(240, 130, 90, 0.1);
+}
+.peach .valueIcon {
+  background: rgba(240, 130, 90, 0.12);
+  color: #e8734a;
+}
+.peach::after { background: #e8734a; }
+.peach:hover { box-shadow: 0 8px 24px rgba(240, 130, 90, 0.12); }
+
+.yellow {
+  background: rgba(234, 179, 8, 0.06);
+  border: 1px solid rgba(234, 179, 8, 0.1);
+}
+.yellow .valueIcon {
+  background: rgba(234, 179, 8, 0.12);
+  color: #ca8a04;
+}
+.yellow::after { background: #ca8a04; }
+.yellow:hover { box-shadow: 0 8px 24px rgba(234, 179, 8, 0.12); }
+
 .valueIcon {
-  font-size: 2rem;
-  margin-bottom: var(--space-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.valueContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .valueTitle {
   font-family: var(--font-heading);
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: var(--space-xs);
+  font-size: 0.95rem;
+  font-weight: 600;
 }
 
 .valueDesc {

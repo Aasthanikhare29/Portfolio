@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Rocket } from "lucide-react";
-import { FiArrowRight } from "react-icons/fi";
+import { FiExternalLink, FiGithub, FiArrowRight } from "react-icons/fi";
 import AnimatedSection from "../components/common/AnimatedSection";
 import PageHero from "../components/common/PageHero";
 import projects from "../data/projects";
@@ -19,43 +19,55 @@ export default function ProjectsPage() {
       <div className={styles.content}>
         <div className="container">
           <div className={styles.grid}>
-            {projects.map((project, index) => {
-              return (
-                <AnimatedSection key={project.id} delay={index * 0.1}>
-                  <Link
-                    to={`/projects/${project.id}`}
-                    className={styles.card}
-                  >
-                    <div className={styles.cardImage}>
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className={styles.projectImage}
-                        loading="lazy"
-                      />
-                      <span className={styles.categoryBadge}>
-                        {project.category}
+            {projects.map((project) => (
+              <AnimatedSection key={project.id} delay={0.1}>
+                <Link to={`/projects/${project.id}`} className={styles.card}>
+                  <div className={styles.cardImage}>
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className={styles.projectImage}
+                      loading="lazy"
+                    />
+                    <span className={styles.categoryBadge}>
+                      {project.category}
+                    </span>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <h3 className={styles.cardTitle}>{project.title}</h3>
+                    <p className={styles.cardDesc}>{project.description}</p>
+                    <div className={styles.tags}>
+                      {project.technologies.map((tech) => (
+                        <span key={tech} className={styles.tag}>
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <div className={styles.cardActions}>
+                      <span
+                        className={`${styles.actionBtn} ${styles.actionBtnLive}`}
+                        onClick={(e) => e.preventDefault()}
+                      >
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                          <FiExternalLink /> Live
+                        </a>
+                      </span>
+                      <span
+                        className={`${styles.actionBtn} ${styles.actionBtnCode}`}
+                        onClick={(e) => e.preventDefault()}
+                      >
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                          <FiGithub /> Code
+                        </a>
+                      </span>
+                      <span className={`${styles.actionBtn} ${styles.actionBtnCase}`}>
+                        Case Study
                       </span>
                     </div>
-                    <div className={styles.cardContent}>
-                      <h3 className={styles.cardTitle}>{project.title}</h3>
-                      <p className={styles.cardDesc}>{project.description}</p>
-                      <div className={styles.tags}>
-                        {project.technologies.map((tech) => (
-                          <span key={tech} className={styles.tag}>
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                      <span className={styles.viewBtn}>
-                        View Case Study{" "}
-                        <FiArrowRight className={styles.viewBtnArrow} />
-                      </span>
-                    </div>
-                  </Link>
-                </AnimatedSection>
-              );
-            })}
+                  </div>
+                </Link>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </div>

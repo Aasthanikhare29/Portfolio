@@ -1,9 +1,11 @@
 .card {
-  background: var(--white);
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
-  border: 1px solid rgba(38,35,43,0.06);
-  box-shadow: var(--shadow-sm);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
   transition: var(--transition);
   height: 100%;
   display: flex;
@@ -11,8 +13,10 @@
 }
 
 .card:hover {
+  background: var(--glass-bg-hover);
+  border: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-hover);
   transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
 }
 
 .iconWrap {

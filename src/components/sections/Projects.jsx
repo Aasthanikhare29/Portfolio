@@ -17,22 +17,20 @@ export default function Projects() {
         </AnimatedSection>
 
         <div className={styles.grid}>
-          {projects.map((project, index) => (
+          {projects.slice(0, 3).map((project, index) => (
             <AnimatedSection key={project.id} delay={index * 0.1}>
-              <div className={styles.card}>
-                <Link to={`/projects/${project.id}`}>
-                  <div className={styles.cardImage}>
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className={styles.projectImage}
-                      loading="lazy"
-                    />
-                    <span className={styles.categoryBadge}>
-                      {project.category}
-                    </span>
-                  </div>
-                </Link>
+              <Link to={`/projects/${project.id}`} className={styles.card}>
+                <div className={styles.cardImage}>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className={styles.projectImage}
+                    loading="lazy"
+                  />
+                  <span className={styles.categoryBadge}>
+                    {project.category}
+                  </span>
+                </div>
                 <div className={styles.cardContent}>
                   <h3 className={styles.cardTitle}>{project.title}</h3>
                   <p className={styles.cardDesc}>{project.description}</p>
@@ -44,31 +42,28 @@ export default function Projects() {
                     ))}
                   </div>
                   <div className={styles.cardActions}>
-                    <a
-                      href={project.liveUrl}
-                      className={styles.actionBtn}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <span
+                      className={`${styles.actionBtn} ${styles.actionBtnLive}`}
+                      onClick={(e) => e.preventDefault()}
                     >
-                      <FiExternalLink /> Live
-                    </a>
-                    <a
-                      href={project.githubUrl}
-                      className={styles.actionBtn}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                        <FiExternalLink /> Live
+                      </a>
+                    </span>
+                    <span
+                      className={`${styles.actionBtn} ${styles.actionBtnCode}`}
+                      onClick={(e) => e.preventDefault()}
                     >
-                      <FiGithub /> Code
-                    </a>
-                    <Link
-                      to={`/projects/${project.id}`}
-                      className={styles.actionBtn}
-                    >
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                        <FiGithub /> Code
+                      </a>
+                    </span>
+                    <span className={`${styles.actionBtn} ${styles.actionBtnCase}`}>
                       Case Study
-                    </Link>
+                    </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             </AnimatedSection>
           ))}
         </div>

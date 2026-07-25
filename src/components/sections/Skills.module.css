@@ -1,11 +1,11 @@
 .skills {
-  background: var(--white);
-  padding: var(--space-6xl) 0;
+  background: transparent;
+  padding: var(--space-3xl) 0;
 }
 
 .header {
   text-align: center;
-  margin-bottom: var(--space-4xl);
+  margin-bottom: var(--space-2xl);
 }
 
 .title {

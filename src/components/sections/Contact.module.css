@@ -1,6 +1,6 @@
 .contact {
-  background: var(--cream);
-  padding: var(--space-6xl) 0;
+  background: rgba(255, 228, 239, 0.12);
+  padding: var(--space-3xl) 0;
 }
 
 .header {
@@ -36,10 +36,13 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
-  background: var(--white);
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: var(--radius-xl);
   padding: var(--space-2xl);
-  border: 1px solid rgba(38, 35, 43, 0.04);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 
 .field {
@@ -60,8 +63,10 @@
 .textarea {
   padding: 14px 18px;
   border-radius: var(--radius-md);
-  border: 1.5px solid rgba(38, 35, 43, 0.08);
-  background: var(--cream);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   font-size: 0.95rem;
   color: var(--dark);
   transition: var(--transition);
@@ -138,15 +143,19 @@
   align-items: center;
   gap: var(--space-md);
   padding: var(--space-md) var(--space-lg);
-  background: var(--white);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: var(--radius-md);
-  border: 1px solid rgba(38, 35, 43, 0.04);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
   transition: var(--transition);
 }
 
 .infoCard:hover {
+  background: var(--glass-bg-hover);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 .infoIcon {

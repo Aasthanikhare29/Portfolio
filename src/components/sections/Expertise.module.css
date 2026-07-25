@@ -1,6 +1,6 @@
 .expertise {
   background: var(--cream);
-  padding: var(--space-6xl) 0;
+  padding: var(--space-3xl) 0;
 }
 
 .header {
@@ -31,13 +31,19 @@
 }
 
 .card {
-  background: var(--white);
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: var(--radius-xl);
   padding: var(--space-2xl);
-  border: 1px solid rgba(38, 35, 43, 0.04);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
 }
 
 .card::before {
@@ -54,9 +60,10 @@
 .cardLavender::before { background: linear-gradient(90deg, var(--lavender-deep), var(--blue-deep)); }
 
 .card:hover {
+  background: var(--glass-bg-hover);
+  border: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-hover);
   transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
-  border-color: transparent;
 }
 
 .cardIcon {
@@ -87,61 +94,7 @@
   font-size: 0.95rem;
   color: var(--muted);
   line-height: 1.75;
-  margin-bottom: var(--space-xl);
-}
-
-.skillsLabel {
-  font-family: var(--font-heading);
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--light-muted);
-  margin-bottom: var(--space-sm);
-}
-
-.skillsList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: var(--space-lg);
-}
-
-.skillTag {
-  padding: 5px 14px;
-  border-radius: var(--radius-xl);
-  font-size: 0.78rem;
-  font-weight: 500;
-}
-
-.tagPink { background: var(--pink); color: var(--dark); }
-.tagBlue { background: var(--blue); color: var(--dark); }
-.tagLavender { background: var(--lavender); color: var(--dark); }
-.tagMint { background: var(--mint); color: var(--dark); }
-.tagPeach { background: var(--peach); color: var(--dark); }
-.tagYellow { background: var(--yellow); color: var(--dark); }
-
-.toolsLabel {
-  font-family: var(--font-handwritten);
-  font-size: 1.05rem;
-  color: var(--muted);
-  margin-bottom: var(--space-sm);
-}
-
-.toolsList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.toolTag {
-  padding: 4px 12px;
-  border-radius: var(--radius-sm);
-  font-size: 0.75rem;
-  font-weight: 500;
-  background: var(--cream);
-  color: var(--muted);
-  border: 1px solid rgba(38, 35, 43, 0.04);
+  flex: 1;
 }
 
 @media (max-width: 900px) {

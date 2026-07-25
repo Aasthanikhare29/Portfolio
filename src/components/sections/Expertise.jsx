@@ -10,12 +10,10 @@ const iconMap = {
 };
 
 const accentMap = {
-  pink: { card: styles.cardPink, tag: styles.tagPink },
-  blue: { card: styles.cardBlue, tag: styles.tagBlue },
-  lavender: { card: styles.cardLavender, tag: styles.tagLavender },
+  pink: styles.cardPink,
+  blue: styles.cardBlue,
+  lavender: styles.cardLavender,
 };
-
-const tagColors = [styles.tagPink, styles.tagBlue, styles.tagLavender, styles.tagMint, styles.tagPeach, styles.tagYellow];
 
 export default function Expertise() {
   return (
@@ -35,33 +33,12 @@ export default function Expertise() {
             const IconComponent = iconMap[item.icon] || Palette;
             return (
               <AnimatedSection key={item.id} delay={index * 0.12}>
-                <div className={`${styles.card} ${accent.card}`}>
+                <div className={`${styles.card} ${accent}`}>
                   <div className={styles.cardIcon}>
                     <IconComponent size={28} strokeWidth={1.5} />
                   </div>
                   <h3 className={styles.cardTitle}>{item.title}</h3>
                   <p className={styles.cardDescription}>{item.description}</p>
-
-                  <p className={styles.skillsLabel}>Core Skills</p>
-                  <div className={styles.skillsList}>
-                    {item.skills.map((skill, i) => (
-                      <span
-                        key={skill}
-                        className={`${styles.skillTag} ${tagColors[i % tagColors.length]}`}
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-
-                  <p className={styles.toolsLabel}>Tools I use</p>
-                  <div className={styles.toolsList}>
-                    {item.tools.map((tool) => (
-                      <span key={tool} className={styles.toolTag}>
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               </AnimatedSection>
             );

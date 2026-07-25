@@ -1,19 +1,19 @@
 .footer {
-  background: var(--cream);
+  background: var(--dark);
   padding: var(--space-4xl) 0 var(--space-xl);
-  border-top: 1px solid rgba(38, 35, 43, 0.06);
 }
 
 .inner {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3xl);
 }
 
-.top {
+/* --- main content --- */
+.main {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: var(--space-3xl);
+  margin-bottom: var(--space-3xl);
 }
 
 .brand {
@@ -26,55 +26,23 @@
   font-family: var(--font-handwritten);
   font-size: 1.8rem;
   font-weight: 700;
-  color: var(--dark);
-  cursor: pointer;
+  color: var(--white);
   text-decoration: none;
 }
 
 .tagline {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 0.95rem;
-  color: var(--muted);
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.5);
   line-height: 1.7;
-  max-width: 350px;
-}
-
-.navTitle {
-  font-family: var(--font-heading);
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--dark);
-  margin-bottom: var(--space-md);
-}
-
-.navGrid {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-}
-
-.navLink {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.9rem;
-  color: var(--muted);
-  transition: var(--transition);
-  text-decoration: none;
-  padding: 2px 0;
-  cursor: pointer;
-  width: fit-content;
-}
-
-.navLink:hover {
-  color: var(--dark);
+  max-width: 340px;
 }
 
 .socialLinks {
   display: flex;
   gap: var(--space-md);
+  margin-top: var(--space-xs);
 }
 
 .socialLink {
@@ -83,61 +51,104 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  border-radius: var(--radius-full);
-  background: var(--white);
-  color: var(--muted);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.5);
   transition: var(--transition);
-  border: 1px solid rgba(38, 35, 43, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .socialLink:hover {
-  color: var(--dark);
-  background: var(--lavender);
-  border-color: var(--lavender);
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
 }
 
+/* --- links --- */
+.linksGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+}
+
+.colTitle {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: var(--space-lg);
+}
+
+.navLink {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  padding: 5px 0;
+  transition: var(--transition);
+}
+
+.navLink:hover {
+  color: var(--white);
+}
+
+/* --- bottom bar --- */
 .bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: var(--space-xl);
-  border-top: 1px solid rgba(38, 35, 43, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .copyright {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 0.85rem;
-  color: var(--light-muted);
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .backToTop {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: 6px;
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 0.85rem;
-  color: var(--muted);
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.4);
   transition: var(--transition);
-  padding: 8px 16px;
-  border-radius: var(--radius-xl);
+  padding: 6px 14px;
+  border-radius: 100px;
   cursor: pointer;
   background: none;
-  border: 1px solid rgba(38, 35, 43, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .backToTop:hover {
-  color: var(--dark);
-  background: var(--white);
-  border-color: var(--lavender);
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 @media (max-width: 768px) {
-  .top {
+  .ctaBar {
+    flex-direction: column;
+    gap: var(--space-lg);
+    text-align: center;
+  }
+
+  .main {
     grid-template-columns: 1fr;
     gap: var(--space-2xl);
+  }
+
+  .linksGroup {
+    grid-template-columns: 1fr 1fr;
   }
 
   .bottom {
