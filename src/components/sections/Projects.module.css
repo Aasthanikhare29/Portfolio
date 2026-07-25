@@ -219,6 +219,15 @@
   .grid {
     grid-template-columns: 1fr;
   }
+
+  .viewAll {
+    margin-top: var(--space-2xl);
+  }
+
+  .viewAllLink {
+    padding: var(--space-sm) var(--space-xl);
+    font-size: 0.85rem;
+  }
 }
 
 .viewAll {

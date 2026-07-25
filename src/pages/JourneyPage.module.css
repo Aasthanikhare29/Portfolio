@@ -139,7 +139,7 @@
 
 /* --- process stepper --- */
 .process {
-  padding: var(--space-4xl) 0;
+  padding: var(--space-3xl) 0;
   background: var(--cream);
 }
 
@@ -205,24 +205,24 @@
 
 .stepContent {
   text-align: center;
-  padding: var(--space-lg) var(--space-sm) 0;
+  padding: var(--space-sm) var(--space-xs) 0;
 }
 
 .stepTitle {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 3px;
   letter-spacing: -0.02em;
 }
 
 .stepDesc {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   color: var(--muted);
-  line-height: 1.6;
-  max-width: 150px;
+  line-height: 1.4;
+  max-width: 100px;
   margin: 0 auto;
 }
 
@@ -248,7 +248,7 @@
 
 .learningTitle {
   font-family: var(--font-heading);
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -258,14 +258,14 @@
 .learningNote {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--muted);
-  line-height: 1.7;
+  line-height: 1.6;
   font-style: italic;
-  padding: var(--space-md) var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
   background: var(--white);
-  border-radius: var(--radius-md);
-  border-left: 4px solid var(--lavender-deep);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--lavender-deep);
 }
 
 .publicNote {

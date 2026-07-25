@@ -30,10 +30,10 @@ const stepColors = [
 const learningTopics = [
   { text: "Advanced React Patterns", done: true },
   { text: "Modern Frontend Architecture", done: true },
+  { text: "Backend Integration", done: true },
   { text: "UI Animation", done: false },
   { text: "Accessibility (a11y)", done: false },
   { text: "Design Systems", done: false },
-  { text: "Backend Integration", done: false },
 ];
 
 function ExperienceCard({ exp, index }) {

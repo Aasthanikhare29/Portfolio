@@ -182,14 +182,23 @@
 
 @media (max-width: 600px) {
   .card {
-    padding: var(--space-xl);
+    padding: var(--space-md);
   }
 
   .cardNumber {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   .cardWrapper {
-    top: calc(60px + var(--index, 0) * 16px) !important;
+    position: relative !important;
+    top: auto !important;
+    margin-bottom: var(--space-sm) !important;
   }
+
+  .date { font-size: 0.7rem; }
+  .role { font-size: 1rem; }
+  .company { font-size: 0.85rem; }
+  .description { font-size: 0.85rem; }
+  .highlight { font-size: 0.8rem; padding: 8px 12px; }
+  .techTag { padding: 3px 8px; font-size: 0.7rem; }
 }

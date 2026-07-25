@@ -97,18 +97,18 @@
 
 .viewAll {
   text-align: center;
-  margin-top: var(--space-3xl);
+  margin-top: var(--space-2xl);
 }
 
 .viewAllLink {
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: var(--space-md) var(--space-2xl);
+  padding: var(--space-sm) var(--space-xl);
   background: var(--dark);
   color: var(--white);
   border-radius: 100px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   transition: var(--transition);
 }
@@ -117,4 +117,27 @@
   background: var(--muted);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 768px) {
+  .categories {
+    gap: var(--space-2xl);
+  }
+
+  .category {
+    gap: var(--space-md);
+  }
+
+  .categoryHeader {
+    padding-bottom: var(--space-md);
+  }
+
+  .skillTags {
+    gap: 8px;
+  }
+
+  .skillTag {
+    padding: 8px 18px;
+    font-size: 0.85rem;
+  }
 }
