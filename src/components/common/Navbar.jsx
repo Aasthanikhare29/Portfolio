@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HiMenu, HiX } from "react-icons/hi";
 import { FiDownload, FiChevronDown } from "react-icons/fi";
 import { Heart, Star, Layers, ChevronRight } from "lucide-react";
+import logoSrc from "../../assets/images/logo1.png";
 import styles from "./Navbar.module.css";
 
 const primaryLinks = [
@@ -85,7 +86,7 @@ export default function Navbar() {
       <div className={styles.navInner}>
         {/* Logo */}
         <Link to="/" className={styles.logo} aria-label="Go to home">
-          ✨ Aastha
+          <img src={logoSrc} alt="Aastha Nikhare" className={styles.logoImg} />
         </Link>
 
         {/* Desktop links */}

@@ -3,8 +3,10 @@ import { motion } from "framer-motion";
 import { BookOpen, Target, Lightbulb, Wrench, Star, ArrowLeft, ExternalLink, ArrowUpRight } from "lucide-react";
 import { FiGithub } from "react-icons/fi";
 import AnimatedSection from "../components/common/AnimatedSection";
-import projects from "../data/projects";
+import { publicProjectService } from "../admin/services/adminDataService";
 import styles from "./ProjectDetailPage.module.css";
+
+const projects = publicProjectService.getAll();
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },

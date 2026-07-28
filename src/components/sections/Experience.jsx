@@ -4,8 +4,10 @@ import { FiArrowRight } from "react-icons/fi";
 import { Star } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import AnimatedSection from "../common/AnimatedSection";
-import experiences from "../../data/experiences";
+import { publicExperienceService } from "../../admin/services/adminDataService";
 import styles from "./Experience.module.css";
+
+const experiences = publicExperienceService.getAll();
 
 const accentColors = [styles.cardPink, styles.cardLavender, styles.cardMint];
 
@@ -29,14 +31,17 @@ function ExperienceCard({ exp, index, total }) {
         }
         transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
-        <div className={styles.cardNumber}>
-          {String(index + 1).padStart(2, "0")}
-        </div>
         <div className={styles.cardContent}>
-          <span className={styles.date}>{exp.date}</span>
-          <h3 className={styles.role}>{exp.role}</h3>
-          <p className={styles.company}>{exp.company}</p>
-          <p className={styles.location}>{exp.location}</p>
+          <div className={styles.headerGrid}>
+            <div className={styles.titleGroup}>
+              <h3 className={styles.role}>{exp.role}</h3>
+              <p className={styles.company}>{exp.company}</p>
+            </div>
+            <span className={styles.date}>{exp.date}</span>
+            <div className={styles.cardNumber}>
+              {String(index + 1).padStart(2, "0")}
+            </div>
+          </div>
           <p className={styles.description}>{exp.description}</p>
           <div className={styles.techTags}>
             {exp.technologies.map((tech) => (

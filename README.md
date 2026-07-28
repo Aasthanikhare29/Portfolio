@@ -1,16 +1,66 @@
-# React + Vite
+# Portfolio - Full Stack Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## Prerequisites
 
-Currently, two official plugins are available:
+- Java 17+
+- Node.js 18+
+- Maven
+- Supabase account (for PostgreSQL database)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Backend Setup
 
-## React Compiler
+### 1. Configure Supabase PostgreSQL
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Create a project at [supabase.com](https://supabase.com)
+2. Go to **Project Settings > Database** and find your connection string
+3. Copy the environment variables from `.env.example` into your shell or `.env` file
 
-## Expanding the Oxlint configuration
+### 2. Environment Variables
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Copy `.env.example` to `.env` and fill in your Supabase credentials:
+
+```
+SUPABASE_DB_URL=jdbc:postgresql://<your-project>.supabase.co:5432/postgres?sslmode=require
+SUPABASE_DB_USERNAME=postgres
+SUPABASE_DB_PASSWORD=your-supabase-password
+```
+
+> **Note:** The backend reads these from environment variables. On Windows PowerShell:
+> ```
+> $env:SUPABASE_DB_URL="jdbc:postgresql://..."
+> $env:SUPABASE_DB_USERNAME="postgres"
+> $env:SUPABASE_DB_PASSWORD="..."
+> ```
+
+### 3. Run the Backend
+
+```bash
+cd backend
+mvn spring-boot:run
+```
+
+The backend starts on `http://localhost:8080`. Tables are auto-created by Hibernate.
+
+### 4. Run the Frontend
+
+```bash
+npm install
+npm run dev
+```
+
+The frontend starts on `http://localhost:5173`.
+
+## API Documentation
+
+All API endpoints are available under `http://localhost:8080/api/`.
+
+Default admin credentials:
+- Email: `admin@portfolio.com`
+- Password: `admin123`
+
+## Tech Stack
+
+- **Frontend:** React + Vite
+- **Backend:** Spring Boot 3.4 + JPA
+- **Database:** PostgreSQL (Supabase)
+- **Auth:** JWT

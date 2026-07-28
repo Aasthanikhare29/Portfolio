@@ -52,30 +52,34 @@
    LOGO
    ============================================================ */
 
+/* ============================================================
+   LOGO  — image clipped to show just the AN mark
+   Source PNG: 1024×1536, mark occupies top ~65% (≈998px tall)
+   width=82px → mark display height = 998×(82/1024) ≈ 80px
+   ============================================================ */
 .logo {
-  font-family: var(--font-handwritten);
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--dark);
-  cursor: pointer;
-  transition: color 0.25s ease, transform 0.25s ease;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  overflow: hidden;
   z-index: 1001;
   text-decoration: none;
   flex-shrink: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .logo:hover {
-  color: var(--lavender-deep);
+  opacity: 0.82;
   transform: scale(1.04);
 }
 
-.darkMode .logo {
-  color: var(--white);
+.logoImg {
+  width: 100px;
+  height: auto;
+  display: block;
+  flex-shrink: 0;
 }
 
-.darkMode .logo:hover {
-  color: var(--pink-deep);
-}
 
 /* ============================================================
    DESKTOP NAV LINKS STRIP
@@ -525,10 +529,16 @@
 
 @media (max-width: 480px) {
   .logo {
-    font-size: 1.5rem;
+    height: 64px;
+    overflow: visible;
+  }
+
+  .logoImg {
+    width: 72px;
+    height: auto;
   }
 
   .navInner {
-    padding: 0 var(--space-lg);
+    padding: 0 var(--space-md);
   }
 }

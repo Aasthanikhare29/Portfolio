@@ -2,20 +2,16 @@ import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 import { Code, Palette, Wrench, Lightbulb } from "lucide-react";
 import AnimatedSection from "../common/AnimatedSection";
-import {
-  frontendSkills,
-  designSkills,
-  toolsSkills,
-  softSkills,
-} from "../../data/skills";
+import { publicSkillService } from "../../admin/services/adminDataService";
 import styles from "./Skills.module.css";
 
-const categories = [
-  { icon: Code, title: "Frontend", skills: frontendSkills, color: styles.blue },
-  { icon: Palette, title: "Design", skills: designSkills, color: styles.pink },
-  { icon: Wrench, title: "Tools", skills: toolsSkills, color: styles.mint },
-  { icon: Lightbulb, title: "Soft Skills", skills: softSkills, color: styles.lavender },
-];
+const skillGroups = publicSkillService.getGrouped();
+const iconMap = { Frontend: Code, Design: Palette, "UI/UX": Palette, Tools: Wrench, "Soft Skills": Lightbulb, Other: Code };
+const colorMap = { Frontend: styles.blue, Design: styles.pink, "UI/UX": styles.pink, Tools: styles.mint, "Soft Skills": styles.lavender, Other: styles.blue };
+
+const categories = Object.entries(skillGroups).map(([title, skills]) => ({
+  icon: iconMap[title] || Code, title, skills, color: colorMap[title] || styles.blue,
+}));
 
 export default function Skills() {
   return (

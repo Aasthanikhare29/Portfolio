@@ -559,9 +559,133 @@
 }
 
 @media (max-width: 480px) {
-  .main { padding: var(--space-lg) var(--space-md); }
-  .preview { padding: var(--space-lg); }
-  .swatchGrid { grid-template-columns: 1fr 1fr; }
-  .radiusGrid { gap: var(--space-md); }
-  .iconGrid { grid-template-columns: repeat(3, 1fr); }
+  .main {
+    padding: var(--space-lg) var(--space-md);
+    width: 100%;
+    min-width: 0;
+  }
+
+  .header {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .headerTitle {
+    font-size: 2rem;
+  }
+
+  .headerDesc {
+    font-size: 0.95rem;
+  }
+
+  .headerButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .headerButtons > * {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .section {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .preview {
+    padding: var(--space-md);
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .previewRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .previewRow > * {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .previewGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .codeBlock {
+    width: 100%;
+    max-width: 100%;
+    padding: var(--space-md);
+    overflow-x: auto;
+  }
+
+  .codeContent {
+    font-size: 0.72rem;
+  }
+
+  .propsTable {
+    min-width: 600px;
+  }
+
+  .swatchGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .shadowGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .radiusGrid {
+    gap: var(--space-md);
+    justify-content: center;
+  }
+
+  .animGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .iconGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .spacingRow {
+    gap: var(--space-sm);
+  }
+
+  .spacingLabel {
+    min-width: 42px;
+  }
+
+  .spacingBar {
+    max-width: 45vw;
+  }
+
+  .spacingValue {
+    min-width: 45px;
+  }
+
+  .navDemoBar {
+    padding: 12px;
+  }
+
+  .navDemoLinks {
+    display: none;
+  }
+
+  .tabsDemo {
+    overflow-x: auto;
+  }
+
+  .tabItem {
+    flex-shrink: 0;
+    padding: 10px 14px;
+  }
+
+  .breadcrumbDemo {
+    flex-wrap: wrap;
+  }
+}
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }

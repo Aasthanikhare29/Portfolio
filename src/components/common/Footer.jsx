@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import { FiGithub, FiLinkedin, FiMail, FiArrowUp } from "react-icons/fi";
+import { FiGithub, FiLinkedin, FiMail, FiArrowUp, FiInstagram } from "react-icons/fi";
+import { publicSocialService } from "../../admin/services/adminDataService";
+import logoSrc from "../../assets/images/logo1.png";
 import styles from "./Footer.module.css";
 
 const navLinks = [
@@ -24,38 +26,28 @@ export default function Footer() {
           <div className={styles.main}>
             <div className={styles.brand}>
               <Link to="/" className={styles.logo}>
-                ✨ Aastha Nikhare
+                <img src={logoSrc} alt="Aastha Nikhare" className={styles.logoImg} />
               </Link>
               <p className={styles.tagline}>
                 Designed with curiosity, coded with care and decorated with a
                 little bit of joy. 🌸
               </p>
               <div className={styles.socialLinks}>
-                <a
-                  href="https://github.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.socialLink}
-                  aria-label="GitHub"
-                >
-                  <FiGithub size={18} />
-                </a>
-                <a
-                  href="https://linkedin.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.socialLink}
-                  aria-label="LinkedIn"
-                >
-                  <FiLinkedin size={18} />
-                </a>
-                <a
-                  href="mailto:aastha@example.com"
-                  className={styles.socialLink}
-                  aria-label="Email"
-                >
-                  <FiMail size={18} />
-                </a>
+                {publicSocialService.getAll().map((link) => {
+                  const iconMap = { FiGithub, FiLinkedin, FiMail, FiInstagram };
+                  const Icon = iconMap[link.icon] || FiMail;
+                  return (
+                    <a key={link.id || link.platform}
+                      href={link.url}
+                      target={link.url.startsWith("mailto:") ? undefined : "_blank"}
+                      rel="noopener noreferrer"
+                      className={styles.socialLink}
+                      aria-label={link.platform}
+                    >
+                      <Icon size={18} />
+                    </a>
+                  );
+                })}
               </div>
             </div>
 

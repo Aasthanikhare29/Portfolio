@@ -488,17 +488,18 @@
     grid-template-columns: 1fr;
   }
 
-  .sidebar {
-    position: static;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
+.sidebar {
+  position: static;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
 
-  .infoCard,
-  .highlightsCard {
-    flex: 1;
-    min-width: 260px;
-  }
+.infoCard,
+.highlightsCard {
+  width: 100%;
+  min-width: 0;
+}
 }
 
 @media (max-width: 768px) {
@@ -523,14 +524,15 @@
     margin: 0 20px;
   }
 
-  .sidebar {
-    flex-direction: column;
-  }
+.sidebar {
+  display: grid;
+  grid-template-columns: 1fr;
+}
 
-  .infoCard,
-  .highlightsCard {
-    min-width: 100%;
-  }
+.infoCard,
+.highlightsCard {
+  width: 100%;
+}
 }
 
 @media (max-width: 480px) {
@@ -554,4 +556,22 @@
     justify-content: center;
     width: 100%;
   }
+  .overviewCard,
+.responsibilitiesBlock,
+.techBlock {
+  padding: var(--space-lg);
+}
+
+.browserBar {
+  padding: 10px 12px;
+}
+
+.urlBar {
+  margin: 0 8px;
+  font-size: 0.7rem;
+}
+
+.headerDesc {
+  max-width: 100%;
+}
 }

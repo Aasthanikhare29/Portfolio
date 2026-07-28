@@ -3,8 +3,10 @@ import { Briefcase, MapPin, Star, Brain, BookOpen, Sprout, Check, Search, Compas
 import { motion, useInView } from "framer-motion";
 import AnimatedSection from "../components/common/AnimatedSection";
 import PageHero from "../components/common/PageHero";
-import experiences from "../data/experiences";
+import { publicExperienceService } from "../admin/services/adminDataService";
 import processSteps from "../data/process";
+
+const experiences = publicExperienceService.getAll();
 import styles from "./JourneyPage.module.css";
 
 const accentColors = [styles.cardPink, styles.cardLavender, styles.cardMint];

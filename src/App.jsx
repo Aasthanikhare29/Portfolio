@@ -16,6 +16,27 @@ import ComponentsPage from "./pages/Components";
 import Challenges from "./pages/Challenges";
 import ChallengeDetails from "./pages/ChallengeDetails";
 
+import ProtectedAdminRoute from "./admin/components/ProtectedAdminRoute";
+import AdminLayout from "./admin/components/AdminLayout";
+import AdminLogin from "./admin/pages/Login";
+import AdminDashboard from "./admin/pages/Dashboard";
+import AdminProjects from "./admin/pages/Projects";
+import AdminProjectForm from "./admin/pages/ProjectForm";
+import AdminBlogs from "./admin/pages/Blogs";
+import AdminBlogForm from "./admin/pages/BlogForm";
+import AdminSkills from "./admin/pages/Skills";
+import AdminExperience from "./admin/pages/Experience";
+import AdminEducation from "./admin/pages/Education";
+import AdminTestimonials from "./admin/pages/Testimonials";
+import AdminServices from "./admin/pages/Services";
+import AdminMessages from "./admin/pages/Messages";
+import AdminProfile from "./admin/pages/Profile";
+import AdminResume from "./admin/pages/Resume";
+import AdminSocialLinks from "./admin/pages/SocialLinks";
+import AdminSettings from "./admin/pages/Settings";
+import AdminCaseStudies from "./admin/pages/CaseStudies";
+import AdminCaseStudyForm from "./admin/pages/CaseStudyForm";
+
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -68,9 +89,36 @@ function PageLoader() {
   );
 }
 
-function AnimatedRoutes() {
-  const location = useLocation();
+function AdminRoutes() {
+  return (
+    <Routes>
+      <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path="/admin" element={<ProtectedAdminRoute><AdminLayout><AdminDashboard /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/projects" element={<ProtectedAdminRoute><AdminLayout><AdminProjects /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/projects/new" element={<ProtectedAdminRoute><AdminLayout><AdminProjectForm /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/projects/edit/:id" element={<ProtectedAdminRoute><AdminLayout><AdminProjectForm /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/case-studies" element={<ProtectedAdminRoute><AdminLayout><AdminCaseStudies /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/case-studies/new" element={<ProtectedAdminRoute><AdminLayout><AdminCaseStudyForm /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/case-studies/edit/:id" element={<ProtectedAdminRoute><AdminLayout><AdminCaseStudyForm /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/blogs" element={<ProtectedAdminRoute><AdminLayout><AdminBlogs /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/blogs/new" element={<ProtectedAdminRoute><AdminLayout><AdminBlogForm /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/blogs/edit/:id" element={<ProtectedAdminRoute><AdminLayout><AdminBlogForm /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/skills" element={<ProtectedAdminRoute><AdminLayout><AdminSkills /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/experience" element={<ProtectedAdminRoute><AdminLayout><AdminExperience /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/education" element={<ProtectedAdminRoute><AdminLayout><AdminEducation /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/testimonials" element={<ProtectedAdminRoute><AdminLayout><AdminTestimonials /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/services" element={<ProtectedAdminRoute><AdminLayout><AdminServices /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/messages" element={<ProtectedAdminRoute><AdminLayout><AdminMessages /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/profile" element={<ProtectedAdminRoute><AdminLayout><AdminProfile /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/resume" element={<ProtectedAdminRoute><AdminLayout><AdminResume /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/social-links" element={<ProtectedAdminRoute><AdminLayout><AdminSocialLinks /></AdminLayout></ProtectedAdminRoute>} />
+      <Route path="/admin/settings" element={<ProtectedAdminRoute><AdminLayout><AdminSettings /></AdminLayout></ProtectedAdminRoute>} />
+    </Routes>
+  );
+}
 
+function PublicRoutes() {
+  const location = useLocation();
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -101,6 +149,8 @@ function AnimatedRoutes() {
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith("/admin");
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 800);
@@ -112,12 +162,12 @@ function App() {
       <AnimatePresence>
         {loading && <PageLoader />}
       </AnimatePresence>
-      <Navbar />
+      {!isAdmin && <Navbar />}
       <ScrollToTop />
       <main>
-        <AnimatedRoutes />
+        {isAdmin ? <AdminRoutes /> : <PublicRoutes />}
       </main>
-      <Footer />
+      {!isAdmin && <Footer />}
     </>
   );
 }

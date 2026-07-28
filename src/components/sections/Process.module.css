@@ -145,6 +145,12 @@
 
 @media (max-width: 600px) {
   .stepper {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    padding: 0;
+  }
+
+  .step {
+    padding: var(--space-lg);
   }
 }

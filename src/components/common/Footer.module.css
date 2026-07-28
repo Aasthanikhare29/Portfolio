@@ -23,11 +23,25 @@
 }
 
 .logo {
-  font-family: var(--font-handwritten);
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  height: 110px;
+  overflow: hidden;
   text-decoration: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.logo:hover {
+  opacity: 0.82;
+  transform: scale(1.04);
+}
+
+.logoImg {
+  /* render at 114px wide → mark fills ~111px height */
+  width: 150px;
+  height: auto;
+  display: block;
+  flex-shrink: 0;
 }
 
 .tagline {

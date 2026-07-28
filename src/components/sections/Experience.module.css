@@ -43,7 +43,8 @@
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   border-radius: var(--radius-xl);
-  padding: var(--space-2xl);
+  padding: 40px 36px;
+  min-height: 430px;
   border: 1px solid rgba(26, 22, 37, 0.06);
   position: relative;
   overflow: hidden;
@@ -64,30 +65,51 @@
 .cardLavender::before { background: var(--lavender-deep); }
 .cardMint::before { background: var(--mint-deep); }
 
-.cardNumber {
-  font-family: var(--font-heading);
-  font-size: 4rem;
-  font-weight: 800;
-  color: rgba(38, 35, 43, 0.04);
-  line-height: 1;
-  margin-bottom: var(--space-md);
-}
-
 .cardContent {
   display: flex;
   flex-direction: column;
 }
 
+.headerGrid {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: start;
+  gap: 32px;
+  margin-bottom: 36px;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cardNumber {
+  font-family: var(--font-heading);
+  font-size: 80px;
+  font-weight: 800;
+  color: rgba(38, 35, 43, 0.06);
+  line-height: 1;
+  text-align: right;
+}
+
 .date {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   font-family: var(--font-handwritten);
-  font-size: 0.85rem;
+  font-size: 1rem;          /* Larger text */
   color: var(--muted);
-  padding: 4px 14px;
+
+  padding: 10px 24px;        /* Taller & wider */
   background: var(--cream);
-  border-radius: var(--radius-xl);
-  margin-bottom: var(--space-lg);
+  border-radius: 999px;
+
+  white-space: nowrap;
   width: fit-content;
+
+  margin-top: 2px;
 }
 
 .role {
@@ -95,7 +117,6 @@
   font-size: 1.3rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  margin-bottom: 4px;
 }
 
 .company {
@@ -103,13 +124,6 @@
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--muted);
-  margin-bottom: 4px;
-}
-
-.location {
-  font-size: 0.82rem;
-  color: var(--light-muted);
-  margin-bottom: var(--space-md);
 }
 
 .description {
@@ -117,15 +131,15 @@
   font-weight: 400;
   font-size: 0.92rem;
   color: var(--muted);
-  line-height: 1.8;
-  margin-bottom: var(--space-lg);
+  line-height: 1.9;
+  margin-bottom: 28px;
 }
 
 .techTags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: var(--space-md);
+  margin-bottom:24px;
 }
 
 .techTag {
@@ -145,7 +159,7 @@
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--dark);
-  padding: 10px 14px;
+  padding: 14px 18px;
   background: var(--yellow);
   border-radius: var(--radius-md);
   line-height: 1.5;

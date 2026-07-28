@@ -72,7 +72,7 @@
   --glass-bg-hover:      rgba(255, 255, 255, 0.80);
   --glass-border:        1px solid rgba(255, 255, 255, 0.70);
   --glass-border-hover:  1px solid rgba(255, 255, 255, 0.90);
-  --glass-blur:          backdrop-filter: blur(16px);
+  --glass-blur:          blur(16px);
   --glass-shadow:        0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
   --glass-shadow-hover:  0 16px 48px rgba(0, 0, 0, 0.10), 0 2px 8px rgba(0, 0, 0, 0.06);
 
@@ -96,6 +96,21 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--nav-height);
   font-size: 16px;
+}
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+main,
+section,
+article,
+aside,
+header,
+footer {
+  min-width: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -126,7 +141,8 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
+  min-width: 0;
   letter-spacing: -0.011em;
   font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
 }
@@ -157,8 +173,15 @@ a {
   text-decoration: none;
 }
 
-img {
+img,
+svg,
+video,
+canvas {
   max-width: 100%;
+}
+
+img,
+video {
   height: auto;
   display: block;
 }
@@ -172,7 +195,10 @@ button {
   font-size: inherit;
 }
 
-input, textarea {
+input,
+textarea,
+select {
+  max-width: 100%;
   font-family: var(--font-body);
   font-weight: 400;
   font-size: 1rem;
@@ -190,6 +216,10 @@ ul {
 }
 
 @media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+
   .container {
     padding: 0 var(--space-lg);
   }
@@ -197,7 +227,22 @@ ul {
 
 @media (max-width: 480px) {
   .container {
-    padding: 0 var(--space-md);
+    padding: 0 16px;
+  }
+}
+@media (max-width: 480px) {
+  .section {
+    padding: var(--space-3xl) 0;
+  }
+
+  h1 {
+    overflow-wrap: anywhere;
+  }
+
+  h2,
+  h3,
+  p {
+    overflow-wrap: break-word;
   }
 }
 

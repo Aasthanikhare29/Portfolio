@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { FiExternalLink, FiGithub, FiArrowRight } from "react-icons/fi";
 import AnimatedSection from "../common/AnimatedSection";
-import projects from "../../data/projects";
+import { publicProjectService } from "../../admin/services/adminDataService";
 import styles from "./Projects.module.css";
+
+const projects = publicProjectService.getHomepage(3);
 
 export default function Projects() {
   return (

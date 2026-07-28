@@ -1,13 +1,14 @@
 import { Code, Palette, Star, Monitor, Lightbulb, Wrench } from "lucide-react";
 import AnimatedSection from "../components/common/AnimatedSection";
 import PageHero from "../components/common/PageHero";
-import {
-  expertise,
-  frontendSkills,
-  designSkills,
-  toolsSkills,
-  softSkills,
-} from "../data/skills";
+import { publicSkillService } from "../admin/services/adminDataService";
+
+const expertise = publicSkillService.getExpertise() || [];
+const skillGroups = publicSkillService.getGrouped();
+const frontendSkills = skillGroups["Frontend"] || [];
+const designSkills = skillGroups["Design"] || skillGroups["UI/UX"] || [];
+const toolsSkills = skillGroups["Tools"] || [];
+const softSkills = skillGroups["Soft Skills"] || [];
 import styles from "./SkillsPage.module.css";
 
 const expertiseIconMap = {

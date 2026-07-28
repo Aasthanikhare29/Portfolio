@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import AnimatedSection from "../components/common/AnimatedSection";
 import PageHero from "../components/common/PageHero";
-import testimonials from "../data/testimonials";
+import { publicTestimonialService } from "../admin/services/adminDataService";
 import styles from "./TestimonialsPage.module.css";
+
+const testimonials = publicTestimonialService.getAll();
 
 export default function TestimonialsPage() {
   return (

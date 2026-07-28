@@ -63,19 +63,29 @@ function CodeBlock({ code }) {
 
 function PropsTable({ props }) {
   return (
-    <table className="propsTable">
-      <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
-      <tbody>
-        {props.map((p) => (
-          <tr key={p.prop}>
-            <td><code>{p.prop}</code></td>
-            <td><code>{p.type}</code></td>
-            <td><code>{p.default}</code></td>
-            <td>{p.description}</td>
+    <div className="tableWrapper">
+      <table className="propsTable">
+        <thead>
+          <tr>
+            <th>Prop</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          {props.map((p) => (
+            <tr key={p.prop}>
+              <td><code>{p.prop}</code></td>
+              <td><code>{p.type}</code></td>
+              <td><code>{p.default}</code></td>
+              <td>{p.description}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 

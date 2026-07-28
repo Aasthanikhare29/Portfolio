@@ -1,11 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FiSend, FiMail, FiLinkedin, FiGithub, FiMapPin, FiArrowRight } from "react-icons/fi";
+import { FiSend, FiMail, FiLinkedin, FiGithub, FiMapPin } from "react-icons/fi";
 import { Sprout } from "lucide-react";
 import AnimatedSection from "../common/AnimatedSection";
+import { publicProfileService, publicSocialService, addActivity } from "../../admin/services/adminDataService";
+import { contactApi } from "../../services/api";
 import styles from "./Contact.module.css";
 
+function useProfile() {
+  const [, setVersion] = useState(0);
+  const profile = publicProfileService.get();
+
+  useEffect(() => {
+    const handler = () => setVersion((v) => v + 1);
+    window.addEventListener("storage", handler);
+    window.addEventListener("profileUpdated", handler);
+    return () => {
+      window.removeEventListener("storage", handler);
+      window.removeEventListener("profileUpdated", handler);
+    };
+  }, []);
+
+  return profile;
+}
+
 export default function Contact() {
+  const profile = useProfile();
+  const [socialLinks] = useState(() => publicSocialService.getAll());
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,6 +36,8 @@ export default function Contact() {
   });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const validate = () => {
     const errs = {};
@@ -26,19 +50,31 @@ export default function Contact() {
     return errs;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
     setErrors(errs);
+    setSubmitError("");
     if (Object.keys(errs).length === 0) {
-      setSubmitted(true);
-      setFormData({ name: "", email: "", subject: "", message: "" });
+      setSubmitting(true);
+      try {
+        await contactApi.submit(formData);
+        addActivity("Message received", `From ${formData.name} — "${formData.subject}"`);
+        setSubmitted(true);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } catch (err) {
+        console.error("Contact form submit error:", err);
+        setSubmitError("Failed to send message. Please try again.");
+      } finally {
+        setSubmitting(false);
+      }
     }
   };
 
   const handleChange = (field) => (e) => {
     setFormData((prev) => ({ ...prev, [field]: e.target.value }));
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: "" }));
+    if (submitError) setSubmitError("");
   };
 
   return (
@@ -137,86 +173,87 @@ export default function Contact() {
                 </div>
               )}
 
+              {submitError && (
+                <div className={styles.errorMsg}>{submitError}</div>
+              )}
+
               <button
                 type="submit"
                 className={styles.submitBtn}
-                disabled={submitted}
+                disabled={submitted || submitting}
               >
-                <FiSend /> Send Message
+                <FiSend />{" "}
+                {submitting ? "Sending..." : "Send Message"}
               </button>
             </form>
           </AnimatedSection>
 
           <AnimatedSection delay={0.15}>
             <div className={styles.contactInfo}>
-              <div className={styles.infoCard}>
-                <span className={styles.infoIcon}>
-                  <FiMail />
-                </span>
-                <div>
-                  <p className={styles.infoLabel}>Email</p>
-                  <a
-                    href="mailto:aastha@example.com"
-                    className={styles.infoLink}
-                  >
-                    aastha@example.com
-                  </a>
-                </div>
-              </div>
-
-              <div className={styles.infoCard}>
-                <span className={styles.infoIcon}>
-                  <FiLinkedin />
-                </span>
-                <div>
-                  <p className={styles.infoLabel}>LinkedIn</p>
-                  <a
-                    href="https://linkedin.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.infoLink}
-                  >
-                    linkedin.com/in/aastha
-                  </a>
-                </div>
-              </div>
-
-              <div className={styles.infoCard}>
-                <span className={styles.infoIcon}>
-                  <FiGithub />
-                </span>
-                <div>
-                  <p className={styles.infoLabel}>GitHub</p>
-                  <a
-                    href="https://github.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.infoLink}
-                  >
-                    github.com/aastha
-                  </a>
-                </div>
-              </div>
-
-              <div className={styles.infoCard}>
-                <span className={styles.infoIcon}>
-                  <FiMapPin />
-                </span>
-                <div>
-                  <p className={styles.infoLabel}>Location</p>
-                  <span className={styles.infoValue}>Nagpur, India</span>
-                </div>
-              </div>
-
-              <div className={styles.infoCard}>
-                <span className={styles.infoIcon}><Sprout size={20} strokeWidth={1.5} /></span>
-                <div>
-                  <p className={styles.infoLabel}>Availability</p>
-                  <span className={styles.infoValue}>
-                    Open to UI & Frontend opportunities
-                  </span>
-                </div>
-              </div>
+              {[
+                {
+                  icon: FiMail,
+                  label: "Email",
+                  value: profile.email || "aastha@example.com",
+                  href: `mailto:${profile.email || "aastha@example.com"}`,
+                },
+                ...(socialLinks
+                  .filter((s) => s.platform === "LinkedIn")
+                  .map((s) => ({
+                    icon: FiLinkedin,
+                    label: "LinkedIn",
+                    value: s.url.replace("https://", ""),
+                    href: s.url,
+                  }))),
+                ...(socialLinks
+                  .filter((s) => s.platform === "GitHub")
+                  .map((s) => ({
+                    icon: FiGithub,
+                    label: "GitHub",
+                    value: s.url.replace("https://", ""),
+                    href: s.url,
+                  }))),
+                {
+                  icon: FiMapPin,
+                  label: "Location",
+                  value: profile.location || "Nagpur, India",
+                },
+                {
+                  icon: Sprout,
+                  label: "Availability",
+                  value:
+                    profile.availabilityStatus ||
+                    "Open to UI & Frontend opportunities",
+                },
+              ]
+                .filter(Boolean)
+                .map((card, i) => (
+                  <div key={i} className={styles.infoCard}>
+                    <span className={styles.infoIcon}>
+                      <card.icon
+                        size={card.icon === Sprout ? 20 : 18}
+                        strokeWidth={card.icon === Sprout ? 1.5 : undefined}
+                      />
+                    </span>
+                    <div>
+                      <p className={styles.infoLabel}>{card.label}</p>
+                      {card.href ? (
+                        <a
+                          href={card.href}
+                          target={
+                            card.href.startsWith("http") ? "_blank" : undefined
+                          }
+                          rel="noopener noreferrer"
+                          className={styles.infoLink}
+                        >
+                          {card.value}
+                        </a>
+                      ) : (
+                        <span className={styles.infoValue}>{card.value}</span>
+                      )}
+                    </div>
+                  </div>
+                ))}
 
               <div className={styles.cta}>
                 Let's turn your idea into something people enjoy using

@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 import AnimatedSection from "../common/AnimatedSection";
-import testimonials from "../../data/testimonials";
+import { publicTestimonialService } from "../../admin/services/adminDataService";
 import styles from "./Testimonials.module.css";
+
+const testimonials = publicTestimonialService.getAll();
 
 const avatarImages = [
   "https://picsum.photos/seed/person1/100/100",

@@ -3,8 +3,10 @@ import { Rocket } from "lucide-react";
 import { FiExternalLink, FiGithub, FiArrowRight } from "react-icons/fi";
 import AnimatedSection from "../components/common/AnimatedSection";
 import PageHero from "../components/common/PageHero";
-import projects from "../data/projects";
+import { publicProjectService } from "../admin/services/adminDataService";
 import styles from "./ProjectsPage.module.css";
+
+const projects = publicProjectService.getAll();
 
 export default function ProjectsPage() {
   return (
